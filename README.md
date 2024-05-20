@@ -9,6 +9,43 @@ RA: 11.120.129-9
 
 Este projeto é uma aplicação de controle de presença de alunos desenvolvida em React Native, que permite aos professores registrar a presença dos alunos em diferentes disciplinas de forma eficiente e rápida. O objetivo principal é facilitar a gestão da presença dos alunos e proporcionar um método prático para armazenar e acessar esses dados. O projeto utiliza o Firebase para armazenar as informações de presença e disciplinas, garantindo que os dados sejam acessíveis de qualquer lugar.
 
+## Motivação
+
+A motivação para desenvolver este aplicativo surgiu da necessidade de uma ferramenta moderna e eficiente para gerenciar a presença dos alunos nas aulas ministradas pelo Cursinho FEI, uma equipe de alunos da FEI que lecionam conteúdos de vestibular para alunos carentes da região de São Bernardo do Campo. Métodos tradicionais de controle de presença, como listas em papel, podem ser demorados, propensos a erros e difíceis de organizar. Com o avanço da tecnologia móvel, surgiu a oportunidade de criar uma solução digital que simplificasse este processo, tornando-o mais preciso e acessível.
+
+## Objetivo
+
+O objetivo deste aplicativo é fornecer uma solução prática e eficiente para os monitores do Cursinho registrarem e gerenciarem a presença dos alunos. Com a digitalização deste processo, espera-se reduzir o tempo gasto em tarefas administrativas e aumentar a precisão dos registros, além de facilitar o acesso e a análise dos dados de presença.
+
+## Funcionalidades
+
+- **Menu Principal:**
+  - Acesso rápido às funcionalidades principais: registrar presença, visualizar horário e acessar o Drive.
+
+- **Seleção de Disciplinas:**
+  - Lista todas as disciplinas disponíveis.
+  - Permite que o usuário selecione uma disciplina para registrar a presença.
+
+- **Registro de Presença:**
+  - Exibe a lista de alunos.
+  - Permite que o usuário marque os alunos presentes e salve a lista de presença juntamente com a disciplina selecionada.
+  - Exibe uma notificação e vibra o dispositivo para confirmar a ação de salvar.
+
+- **Armazenamento no Firebase:**
+  - Salva os dados de presença e disciplinas no Firebase em tempo real, garantindo acesso remoto e seguro.
+
+## Capturas de Tela
+
+### Menu Principal
+![Menu Principal](path/to/menu_screenshot.png)
+
+### Seleção de Disciplinas
+![Seleção de Disciplinas](path/to/subjects_screenshot.png)
+
+### Registro de Presença
+![Registro de Presença](path/to/students_screenshot.png)
+
+
 ## Tecnologias Utilizadas
 
 - [React Native](https://reactnative.dev/): Framework para desenvolvimento de aplicativos móveis multiplataforma.
@@ -37,19 +74,6 @@ O aplicativo de controle de presença possui uma interface simples e intuitiva, 
    - Quando a lista é salva, uma notificação é exibida e o dispositivo vibra para confirmar a ação.
 
 ## Estrutura do Projeto
-
-A estrutura do projeto é organizada da seguinte forma:
-
-├── assets # Arquivos de mídia, como imagens e ícones
-├── components # Componentes reutilizáveis do React
-├── Menu.js # Tela de menu principal
-├── Subjects.js # Tela de seleção de disciplinas
-├── Students.js # Tela de registro de presença
-├── config # Pasta de configurações
-│ ├── config.js # Configuração do Firebase
-├── App.js # Arquivo principal da aplicação
-├── package.json # Dependências e scripts do npm
-└── README.md # Documentação do projeto
 
 ### Descrição dos Arquivos Principais
 
