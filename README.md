@@ -37,13 +37,13 @@ O objetivo deste aplicativo é fornecer uma solução prática e eficiente para 
 ## Capturas de Tela
 
 ### Menu Principal
-![Menu Principal](path/to/menu_screenshot.png)
+![Menu Principal](menu_screenshot.png)
 
 ### Seleção de Disciplinas
-![Seleção de Disciplinas](path/to/subjects_screenshot.png)
+![Seleção de Disciplinas](subjects_screenshot.png)
 
 ### Registro de Presença
-![Registro de Presença](path/to/students_screenshot.png)
+![Registro de Presença](students_screenshot.png)
 
 
 ## Tecnologias Utilizadas
