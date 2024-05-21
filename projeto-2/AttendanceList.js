@@ -1,11 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Vibration } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Vibration, ActivityIndicator } from 'react-native';
 import Toast from 'react-native-toast-message';
-import firebase from './config/config'; // Certifique-se de que o caminho esteja correto
+import firebase from './config/config'; 
+import Modal from 'react-native-modal';
 
 const AttendanceList = ({ navigation, route }) => {
-  const { selectedSubject } = route.params; // Receber a disciplina selecionada
+  const { selectedSubject } = route.params; 
   const [presentStudents, setPresentStudents] = React.useState([]);
+  const [isSending, setIsSending] = React.useState(false);
+  const [isSent, setIsSent] = React.useState(false);
 
   const students = [
     { id: '1', name: 'Amanda Silva Martins' },
@@ -15,7 +18,7 @@ const AttendanceList = ({ navigation, route }) => {
     { id: '5', name: 'Arthur Henrique Botelho' },
     { id: '6', name: 'Beatriz de Araujo Balaton' },
     { id: '7', name: 'Beatriz Esthefany Correia Barbosa' },
-    // Adicione mais alunos aqui se necessário
+
   ];
 
   const toggleStudentAttendance = (studentId) => {
@@ -28,19 +31,24 @@ const AttendanceList = ({ navigation, route }) => {
   };
 
   const handleSave = async () => {
+    setIsSending(true);
     Vibration.vibrate();
+    //alert("Salvo com sucesso!!!");
     try {
       const attendanceRef = firebase.database().ref('/attendance');
       await attendanceRef.push({
         presentStudents,
-        subject: selectedSubject, // Adicionar a disciplina selecionada
+        subject: selectedSubject, 
         timestamp: Date.now(),
       });
-      Toast.show({
-        type: 'success',
-        text1: 'PRESENÇA REGISTRADA',
-      });
-      navigation.navigate('Menu');
+      setTimeout(() => {
+        setIsSending(false);
+        setIsSent(true);
+        setTimeout(() => {
+          setIsSent(false);
+          navigation.navigate('Menu');
+        }, 2000);
+      }, 2000);
     } catch (error) {
       Toast.show({
         type: 'error',
@@ -69,7 +77,7 @@ const AttendanceList = ({ navigation, route }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>LISTA DE ALUNOS</Text>
-        <Text style={styles.subjectText}>Disciplina: {selectedSubject}</Text> {/* Mostrar a disciplina selecionada */}
+        <Text style={styles.subjectText}>Disciplina: {selectedSubject}</Text> {}
       </View>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.studentsContainer}>
@@ -82,6 +90,16 @@ const AttendanceList = ({ navigation, route }) => {
         </View>
       </ScrollView>
       <Toast ref={(ref) => Toast.setRef(ref)} />
+      <Modal isVisible={isSending}>
+        <View style={styles.modalContent}>
+          <ActivityIndicator size="large" color="#375de3" />
+        </View>
+      </Modal>
+      <Modal isVisible={isSent}>
+        <View style={styles.modalContent}>
+          <Text style={styles.modalText}>PRESENÇA REGISTRADA</Text>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -92,7 +110,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   header: {
-    height: 100, // Aumentar a altura para acomodar o novo texto
+    height: 100,
     backgroundColor: '#375de3',
     justifyContent: 'center',
     alignItems: 'center',
@@ -166,6 +184,17 @@ const styles = StyleSheet.create({
   },
   saveButtonText: {
     color: '#FFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+   modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalText: {
+    marginTop: 10,
     fontSize: 16,
     fontWeight: 'bold',
   },
