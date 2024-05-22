@@ -5,14 +5,14 @@ import firebase from "firebase";0
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: ""
+  apiKey: "AIzaSyCyfAYyJvkc506X29AMRswXr_RuLCUjycw",
+  authDomain: "projeto-2---cc4670.firebaseapp.com",
+  databaseURL: "https://projeto-2---cc4670-default-rtdb.firebaseio.com",
+  projectId: "projeto-2---cc4670",
+  storageBucket: "projeto-2---cc4670.appspot.com",
+  messagingSenderId: "231110881670",
+  appId: "1:231110881670:web:18a1e776476eaec8b6fc07",
+  measurementId: "G-FSVP0B2XBC"
 };
 
 // Initialize Firebase

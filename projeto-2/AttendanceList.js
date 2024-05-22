@@ -1,11 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Vibration, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  Vibration,
+  ActivityIndicator,
+} from 'react-native';
 import Toast from 'react-native-toast-message';
-import firebase from './config/config'; 
+import firebase from './config/config';
 import Modal from 'react-native-modal';
 
 const AttendanceList = ({ navigation, route }) => {
-  const { selectedSubject } = route.params; 
+  const { selectedSubject } = route.params;
   const [presentStudents, setPresentStudents] = React.useState([]);
   const [isSending, setIsSending] = React.useState(false);
   const [isSent, setIsSent] = React.useState(false);
@@ -18,7 +26,6 @@ const AttendanceList = ({ navigation, route }) => {
     { id: '5', name: 'Arthur Henrique Botelho' },
     { id: '6', name: 'Beatriz de Araujo Balaton' },
     { id: '7', name: 'Beatriz Esthefany Correia Barbosa' },
-
   ];
 
   const toggleStudentAttendance = (studentId) => {
@@ -26,7 +33,7 @@ const AttendanceList = ({ navigation, route }) => {
     if (index === -1) {
       setPresentStudents([...presentStudents, studentId]);
     } else {
-      setPresentStudents(presentStudents.filter(id => id !== studentId));
+      setPresentStudents(presentStudents.filter((id) => id !== studentId));
     }
   };
 
@@ -38,7 +45,7 @@ const AttendanceList = ({ navigation, route }) => {
       const attendanceRef = firebase.database().ref('/attendance');
       await attendanceRef.push({
         presentStudents,
-        subject: selectedSubject, 
+        subject: selectedSubject,
         timestamp: Date.now(),
       });
       setTimeout(() => {
@@ -65,9 +72,13 @@ const AttendanceList = ({ navigation, route }) => {
         style={[
           styles.button,
           presentStudents.includes(student.id) ? styles.selectedButton : null,
-        ]}
-      >
-        <View style={[styles.marker, presentStudents.includes(student.id) ? styles.selectedMarker : null]} />
+        ]}>
+        <View
+          style={[
+            styles.marker,
+            presentStudents.includes(student.id) ? styles.selectedMarker : null,
+          ]}
+        />
         <Text style={styles.buttonText}>{student.name}</Text>
       </TouchableOpacity>
     ));
@@ -77,12 +88,12 @@ const AttendanceList = ({ navigation, route }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>LISTA DE ALUNOS</Text>
-        <Text style={styles.subjectText}>Disciplina: {selectedSubject}</Text> {}
+        <Text style={styles.subjectText}>Disciplina: {selectedSubject}</Text>
       </View>
-      <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.studentsContainer}>
-          {renderStudents()}
-        </View>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollViewContent}>
+        <View style={styles.studentsContainer}>{renderStudents()}</View>
         <View style={styles.saveButtonContainer}>
           <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
             <Text style={styles.saveButtonText}>Salvar</Text>
@@ -187,7 +198,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-   modalContent: {
+  modalContent: {
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
